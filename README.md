@@ -10,8 +10,14 @@ install dependencies:
 yarn install
 ```
 
-run app: 
+run app (development): 
 
 ```bash
 yarn dev
+```
+run app (production): 
+
+```bash
+yarn build
+yarn start
 ```

@@ -5,6 +5,21 @@
 // import { User } from 'path/to/interfaces';
 
 export type User = {
-  id: number
-  name: string
+    id: number;
+    name: string;
+};
+
+export type Viking = {
+    name: string;
+    translation: string;
+    gender: Gender | 'uni';
+};
+
+export enum Gender {
+    MALE = 'male',
+    FEMALE = 'female',
 }
+
+export type VikingReturnType = Viking & {
+    score: number;
+};

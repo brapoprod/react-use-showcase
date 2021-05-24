@@ -1,0 +1,18 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h7,
+h8 {
+    color: #468966;
+}
+
+a {
+    color: #459396 !important;
+}
+a:hover {
+    color: #6DD6A0 !important;
+    text-decoration: none !important;
+}

@@ -33,11 +33,15 @@ const getVikingNames = (params: VikingParamsType) => {
         score: calculateVikingMatch(name, vikingName.name),
     }));
     const highestScore = Math.max(...scoredNames.map((name) => name.score));
-    const possibleVikingNames = scoredNames.filter(
-        (name) => name.score === highestScore
-    );
 
-    return possibleVikingNames;
+    if (highestScore !== 0) {
+        const possibleVikingNames = scoredNames.filter(
+            (name) => name.score === highestScore
+        );
+    
+        return possibleVikingNames;
+    }
+    return []
 };
 
 const handler = (_req: NextApiRequest, res: NextApiResponse) => {

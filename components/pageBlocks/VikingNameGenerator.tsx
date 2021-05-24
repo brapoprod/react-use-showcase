@@ -1,9 +1,17 @@
 import axios from 'axios';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useCopyToClipboard, useFirstMountState, useLocalStorage } from 'react-use';
+import {
+    useCopyToClipboard,
+    useFirstMountState,
+    useLocalStorage,
+} from 'react-use';
 import { Gender, Viking, VikingReturnType } from '../../interfaces';
 
-const VikingNameGenerator = ({setGlobalViking}: {setGlobalViking: (viking: Viking) => void }) => {
+const VikingNameGenerator = ({
+    setGlobalViking,
+}: {
+    setGlobalViking: (viking: Viking) => void;
+}) => {
     const [name, setName] = useState('');
     const [gender, setGender] = useState<Gender>(Gender.MALE);
     const [possibleVikings, setPossibleVikings] = useState<VikingReturnType[]>(
@@ -34,17 +42,17 @@ const VikingNameGenerator = ({setGlobalViking}: {setGlobalViking: (viking: Vikin
             const textToCopy = `Hello, my viking name is ${viking.name}, which means ${viking.translation}. See you in Valhalla!`;
             copyToClipboard(textToCopy);
         },
-        [possibleVikings],
-    )
+        [possibleVikings]
+    );
 
     const identifyAs = useCallback(
         (idx: number) => {
             const viking = possibleVikings[idx];
-            setLocalViking(viking)
-            setGlobalViking(viking)
+            setLocalViking(viking);
+            setGlobalViking(viking);
         },
-        [possibleVikings],
-    )
+        [possibleVikings]
+    );
 
     const multiplePossibilities = possibleVikings.length > 1;
 
@@ -56,12 +64,15 @@ const VikingNameGenerator = ({setGlobalViking}: {setGlobalViking: (viking: Vikin
 
     useEffect(() => {
         if (copyState.value) {
-            alert(`Viking is succesfully copied to clipboard: ${copyState.value}`)
+            alert(
+                `Viking is succesfully copied to clipboard: ${copyState.value}`
+            );
         } else if (copyState.error) {
-            alert('Something went wrong copying this viking to your clipboard. Please try again.')
+            alert(
+                'Something went wrong copying this viking to your clipboard. Please try again.'
+            );
         }
-
-    }, [copyState])
+    }, [copyState]);
 
     return (
         <section>
@@ -70,7 +81,10 @@ const VikingNameGenerator = ({setGlobalViking}: {setGlobalViking: (viking: Vikin
                 This component will calculate your ideal viking name. Check it
                 out!
             </p>
-            <small>This component makes use of the useFirstMountState hook. In the backend some neat ES6 functions are used</small>
+            <small>
+                This component makes use of the useFirstMountState hook. In the
+                backend some neat ES6 functions are used
+            </small>
             <div>
                 <div>
                     <label htmlFor="name">Name:</label>
@@ -97,7 +111,10 @@ const VikingNameGenerator = ({setGlobalViking}: {setGlobalViking: (viking: Vikin
                 <button onClick={getNames}>Get possible vikingnames</button>
             </div>
             {hasError && (
-                <h3>Sorry, the algorithm didn't match you to a viking. You will never enter Valhalla...</h3>
+                <h3>
+                    Sorry, the algorithm didn't match you to a viking. You will
+                    never enter Valhalla...
+                </h3>
             )}
             {possibleVikings.length > 0 && (
                 <div>
@@ -115,8 +132,12 @@ const VikingNameGenerator = ({setGlobalViking}: {setGlobalViking: (viking: Vikin
                             <h4>Viking {idx + 1}</h4>
                             <h5>Viking name: {possibleViking.name}</h5>
                             <h6>Meaning: {possibleViking.translation}</h6>
-                            <button onClick={() => copyVikingToClipboard(idx)}>Copy this to your clipboard</button>
-                            <button onClick={() => identifyAs(idx)}>Identify as {possibleViking.name}</button>
+                            <button onClick={() => copyVikingToClipboard(idx)}>
+                                Copy this to your clipboard
+                            </button>
+                            <button onClick={() => identifyAs(idx)}>
+                                Identify as {possibleViking.name}
+                            </button>
                         </article>
                     ))}
                 </div>

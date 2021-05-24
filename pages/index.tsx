@@ -9,26 +9,27 @@ import { useLocalStorage } from 'react-use';
 import { Viking } from '../interfaces';
 
 const IndexPage = () => {
-    
-    
-    const [localStorageViking,, removeViking] = useLocalStorage<Viking>('viking');
+    const [localStorageViking, , removeViking] =
+        useLocalStorage<Viking>('viking');
 
-    const [globalViking, setGlobalViking] = useState<Viking | null>(localStorageViking || null)
-    
+    const [globalViking, setGlobalViking] = useState<Viking | null>(
+        localStorageViking || null
+    );
+
     const unViking = () => {
         removeViking();
-        setGlobalViking(null)
-    }
+        setGlobalViking(null);
+    };
 
     return (
         <Layout title="React Use Showcase">
             <Container>
                 {!!globalViking && (
                     <section>
-                        <h2>Hi, {globalViking.name}, {globalViking.translation}</h2>
-                        <button onClick={unViking}>
-                            Unviking yourself
-                        </button>
+                        <h2>
+                            Hi, {globalViking.name}, {globalViking.translation}
+                        </h2>
+                        <button onClick={unViking}>Unviking yourself</button>
                     </section>
                 )}
                 <section>

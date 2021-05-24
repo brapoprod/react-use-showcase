@@ -38,10 +38,10 @@ const getVikingNames = (params: VikingParamsType) => {
         const possibleVikingNames = scoredNames.filter(
             (name) => name.score === highestScore
         );
-    
+
         return possibleVikingNames;
     }
-    return []
+    return [];
 };
 
 const handler = (_req: NextApiRequest, res: NextApiResponse) => {

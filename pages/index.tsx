@@ -1,6 +1,8 @@
-import Layout from '../components/Layout'
-import Link from 'next/link'
-import { Container } from '../components/Layout.styles'
+import Layout from '../components/Layout';
+import Link from 'next/link';
+import { Container } from '../components/Layout.styles';
+import GlobalStateComponent from '../utils/pageBlocks/GlobalStateComponent';
+import DebouncedFetch from '../utils/pageBlocks/DebouncedFetch';
 
 const IndexPage = () => (
     <Layout title="React Use Showcase">
@@ -16,8 +18,10 @@ const IndexPage = () => (
                     package.
                 </p>
             </section>
+            <GlobalStateComponent />
+            <DebouncedFetch />
         </Container>
     </Layout>
-)
+);
 
-export default IndexPage
+export default IndexPage;

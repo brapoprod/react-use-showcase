@@ -1,8 +1,10 @@
 import Layout from '../components/Layout';
 import Link from 'next/link';
 import { Container } from '../components/Layout.styles';
-import GlobalStateComponent from '../utils/pageBlocks/GlobalStateComponent';
-import DebouncedFetch from '../utils/pageBlocks/DebouncedFetch';
+import GlobalStateComponent from '../components/pageBlocks/GlobalStateComponent';
+import DebouncedFetch from '../components/pageBlocks/DebouncedFetch';
+import React from 'react';
+import VikingNameGenerator from '../components/pageBlocks/VikingNameGenerator';
 
 const IndexPage = () => (
     <Layout title="React Use Showcase">
@@ -20,6 +22,7 @@ const IndexPage = () => (
             </section>
             <GlobalStateComponent />
             <DebouncedFetch />
+            <VikingNameGenerator />
         </Container>
     </Layout>
 );

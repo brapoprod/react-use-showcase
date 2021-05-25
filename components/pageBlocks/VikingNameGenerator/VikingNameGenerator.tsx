@@ -1,11 +1,30 @@
 import axios from 'axios';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
     useCopyToClipboard,
     useFirstMountState,
     useLocalStorage,
 } from 'react-use';
-import { Gender, Viking, VikingReturnType } from '../../interfaces';
+import { Gender, Viking, VikingReturnType } from '../../../interfaces';
+import { colors } from '../../../utils/variables';
+import {
+    Button,
+    LayoutContainer,
+    LayoutContainerSubTitle,
+    LayoutContainerTitle,
+} from '../../Layout.styles';
+import {
+    VikingParameterBlock,
+    VikingParametersContainer,
+    ErrorMessage,
+    AlgorithmTitle,
+    VikingBlock,
+    VikingBlocksContainer,
+    VikingIndex,
+    VikingName,
+    VikingMeaning,
+    ButtonContainer,
+} from './VikingNameGenerator.styles';
 
 const VikingNameGenerator = ({
     setGlobalViking,
@@ -75,18 +94,25 @@ const VikingNameGenerator = ({
     }, [copyState]);
 
     return (
-        <section>
-            <h2>Viking name generator</h2>
-            <p>
+        <LayoutContainer
+            backgroundColor={colors.lightGrey}
+            verticalPadding="2.5rem"
+        >
+            <LayoutContainerTitle>
+                ⛵ Viking name generator
+            </LayoutContainerTitle>
+            <LayoutContainerSubTitle>
                 This component will calculate your ideal viking name. Check it
                 out!
-            </p>
-            <small>
-                This component makes use of the useCopyToClipboard, useFirstMountState and useLocalStorage hooks. In the
-                backend some neat ES6 functions are used
-            </small>
-            <div>
-                <div>
+                <br />
+                <small>
+                    This component makes use of the useCopyToClipboard,
+                    useFirstMountState and useLocalStorage hooks. In the backend
+                    some neat ES6 functions are used
+                </small>
+            </LayoutContainerSubTitle>
+            <VikingParametersContainer>
+                <VikingParameterBlock>
                     <label htmlFor="name">Name:</label>
                     <input
                         type="text"
@@ -94,9 +120,9 @@ const VikingNameGenerator = ({
                         value={name}
                         onChange={(event) => setName(event.currentTarget.value)}
                     />
-                </div>
-                <div>
-                    <label htmlFor="gender">Name:</label>
+                </VikingParameterBlock>
+                <VikingParameterBlock>
+                    <label htmlFor="gender">Gender:</label>
                     <select
                         name="gender"
                         value={gender}
@@ -107,42 +133,59 @@ const VikingNameGenerator = ({
                         <option value={Gender.MALE}>Male</option>
                         <option value={Gender.FEMALE}>Female</option>
                     </select>
-                </div>
-                <button onClick={getNames}>Get possible vikingnames</button>
-            </div>
+                </VikingParameterBlock>
+                <Button onClick={getNames}>Get possible vikingnames</Button>
+            </VikingParametersContainer>
             {hasError && (
-                <h3>
+                <ErrorMessage>
                     Sorry, the algorithm didn't match you to a viking. You will
                     never enter Valhalla...
-                </h3>
+                </ErrorMessage>
             )}
             {possibleVikings.length > 0 && (
                 <div>
                     {multiplePossibilities ? (
-                        <h3>
+                        <AlgorithmTitle>
                             There are {possibleVikings.length} viking
                             posibilities
-                        </h3>
+                        </AlgorithmTitle>
                     ) : (
-                        <h3>There is 1 viking possibility</h3>
+                        <AlgorithmTitle>
+                            There is 1 viking possibility
+                        </AlgorithmTitle>
                     )}
                     <p>Your algorithm-score is {possibleVikings[0].score}</p>
-                    {possibleVikings.map((possibleViking, idx) => (
-                        <article key={possibleViking.name}>
-                            <h4>Viking {idx + 1}</h4>
-                            <h5>Viking name: {possibleViking.name}</h5>
-                            <h6>Meaning: {possibleViking.translation}</h6>
-                            <button onClick={() => copyVikingToClipboard(idx)}>
-                                Copy this to your clipboard
-                            </button>
-                            <button onClick={() => identifyAs(idx)}>
-                                Identify as {possibleViking.name}
-                            </button>
-                        </article>
-                    ))}
+                    <VikingBlocksContainer>
+                        {possibleVikings.map((possibleViking, idx) => (
+                            <VikingBlock key={possibleViking.name}>
+                                <VikingIndex>Viking {idx + 1}</VikingIndex>
+                                <VikingName>
+                                    Viking name: {possibleViking.name}
+                                </VikingName>
+                                <VikingMeaning>
+                                    Meaning:{' '}
+                                    <strong>
+                                        {possibleViking.translation}
+                                    </strong>
+                                </VikingMeaning>
+                                <ButtonContainer>
+                                    <Button
+                                        onClick={() =>
+                                            copyVikingToClipboard(idx)
+                                        }
+                                    >
+                                        Copy to clipboard
+                                    </Button>
+                                    <Button onClick={() => identifyAs(idx)}>
+                                        Identify as {possibleViking.name}
+                                    </Button>
+                                </ButtonContainer>
+                            </VikingBlock>
+                        ))}
+                    </VikingBlocksContainer>
                 </div>
             )}
-        </section>
+        </LayoutContainer>
     );
 };
 

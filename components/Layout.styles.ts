@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, fontFamilies, gradients } from '../utils/variables';
+import { colors, fontFamilies } from '../utils/variables';
 
 type LayoutContainerProps = {
     backgroundColor?: string;
@@ -21,7 +21,7 @@ export const Header = styled.header`
 
 export const LayoutContainer = styled.div`
     padding: ${(props: LayoutContainerProps) => props.verticalPadding || '1rem'}
-        1rem;
+        2rem;
     ${(props: LayoutContainerProps) =>
         props.backgroundColor
             ? `background-color: ${props.backgroundColor}`
@@ -47,18 +47,22 @@ export const Button = styled.button`
     font-size: 1rem;
     font-family: ${fontFamilies.normal};
     transition: all 0.1s ease-in-out;
+
+    &:hover {
+        background-color: ${colors.whiteGreen};
+        color: ${colors.secondaryBlue};
+        transition: all 0.1s ease-in-out;
+    }
     
-    &:hover{
-      background-color: ${colors.whiteGreen};
-      color: ${colors.secondaryBlue};
-      transition: all 0.1s ease-in-out;
+    &:focus {
+        outline: 0;
     }
 `;
 
 export const CenteredButton = styled(Button)`
     display: block;
     margin: 0 auto;
-`
+`;
 
 export const Footer = styled.footer`
     padding: 0.5rem 0;

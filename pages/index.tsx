@@ -2,7 +2,7 @@ import Layout from '../components/Layout';
 import GlobalStateComponent from '../components/pageBlocks/GlobalStateComponent/GlobalStateComponent';
 import DebouncedFetch from '../components/pageBlocks/DebouncedFetch/DebouncedFetch';
 import React, { useState } from 'react';
-import VikingNameGenerator from '../components/pageBlocks/VikingNameGenerator';
+import VikingNameGenerator from '../components/pageBlocks/VikingNameGenerator/VikingNameGenerator';
 import { useLocalStorage } from 'react-use';
 import { Viking } from '../interfaces';
 import IntroComponent from '../components/pageBlocks/IntroComponent/IntroComponent';

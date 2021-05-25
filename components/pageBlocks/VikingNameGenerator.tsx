@@ -82,7 +82,7 @@ const VikingNameGenerator = ({
                 out!
             </p>
             <small>
-                This component makes use of the useFirstMountState hook. In the
+                This component makes use of the useCopyToClipboard, useFirstMountState and useLocalStorage hooks. In the
                 backend some neat ES6 functions are used
             </small>
             <div>

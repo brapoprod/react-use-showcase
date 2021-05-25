@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Reggae+One&display=swap');
+
 h1,
 h2,
 h3,
@@ -9,10 +11,6 @@ h8 {
     color: #468966;
 }
 
-a {
-    color: #459396 !important;
-}
-a:hover {
-    color: #6DD6A0 !important;
-    text-decoration: none !important;
+* {
+    font-family: 'Montserrat', sans-serif;
 }

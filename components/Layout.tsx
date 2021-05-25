@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
-import { Container, Footer, Header } from './Layout.styles'
+import { LayoutContainer, Footer, Header } from './Layout.styles'
 
 type Props = {
     children?: ReactNode
@@ -19,14 +19,14 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
             />
         </Head>
         <Header>
-            <Container>
+            <LayoutContainer>
                 <h1>
                     <Link href="/">
                         <a>React-Use Showcase</a>
                     </Link>{' '}
                     👀
                 </h1>
-            </Container>
+            </LayoutContainer>
         </Header>
         {children}
         <Footer>

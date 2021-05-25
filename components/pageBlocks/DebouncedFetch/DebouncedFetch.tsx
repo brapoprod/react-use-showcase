@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useDebounce, usePrevious } from 'react-use';
+import { Button, LayoutContainer, LayoutContainerSubTitle, LayoutContainerTitle } from '../../Layout.styles';
+import { CenteredContainer, InputContainer, FetchedTitle } from './DebouncedFetch.styles';
 
 const DebouncedFetch = () => {
     const [inputValue, setInputValue] = useState('');
@@ -34,7 +36,7 @@ const DebouncedFetch = () => {
     const fetchedBlock = useMemo(
         () => (
             <div>
-                Fetched data after {delayInSeconds} seconds:
+                <FetchedTitle>Fetched data after {delayInSeconds} seconds:</FetchedTitle>
                 <p>{fetchedParams}</p>
             </div>
         ),
@@ -47,15 +49,15 @@ const DebouncedFetch = () => {
     }, [isDebouncing]);
 
     return (
-        <section>
-            <h2>DebouncedFetch</h2>
-            <p>
+        <LayoutContainer verticalPadding="2rem">
+            <LayoutContainerTitle>⌛ DebouncedFetch</LayoutContainerTitle>
+            <LayoutContainerSubTitle>
                 This calls the api with a debounce on the entered params and
                 also uses previous state to prevent unnecessary fetches to the
                 api
-            </p>
-            <div>
-                <div>
+            </LayoutContainerSubTitle>
+            <CenteredContainer>
+                <InputContainer>
                     <label htmlFor="entered-delay">Delay in ms:</label>
                     <input
                         type="number"
@@ -66,8 +68,8 @@ const DebouncedFetch = () => {
                             setDelay(parseInt(event.currentTarget.value))
                         }
                     />
-                </div>
-                <div>
+                </InputContainer>
+                <InputContainer>
                     <label htmlFor="entered-value">Data to fetch:</label>
                     <input
                         type="text"
@@ -78,18 +80,16 @@ const DebouncedFetch = () => {
                             setInputValue(event.currentTarget.value);
                         }}
                     />
-                </div>
+                </InputContainer>
                 {isDebouncing && (
-                    <div>
-                        <button onClick={cancelDebounce}>
+                        <Button onClick={cancelDebounce}>
                             Cancel debounce
-                        </button>
-                    </div>
+                        </Button>
                 )}
 
                 {!!fetchedParams && fetchedBlock}
-            </div>
-        </section>
+            </CenteredContainer>
+        </LayoutContainer>
     );
 };
 

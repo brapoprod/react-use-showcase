@@ -1,8 +1,13 @@
 import React from 'react';
 import { createGlobalState } from 'react-use';
 import { colors } from '../../../utils/variables';
-import { LayoutContainer, LayoutContainerSubTitle, LayoutContainerTitle, CenteredButton} from '../../Layout.styles';
-import { ItemContainer, ItemsContainer  } from './GlabalStateComponent.styles';
+import {
+    LayoutContainer,
+    LayoutContainerSubTitle,
+    LayoutContainerTitle,
+    CenteredButton,
+} from '../../Layout.styles';
+import { ItemContainer, ItemsContainer } from './GlabalStateComponent.styles';
 
 interface InitialGlobalStateType {
     firstValue: number;
@@ -75,18 +80,23 @@ const TotalsOfItems = () => {
 const GlobalStateComponent = () => {
     const [, setTotals] = useGlobalValue();
     return (
-        <LayoutContainer backgroundColor={colors.lightGrey} verticalPadding="2rem">
-                <LayoutContainerTitle>🌈 GlobalState</LayoutContainerTitle>
-                <LayoutContainerSubTitle>
-                    This demonstrates the power and easiness of the create
-                    global state hook
-                </LayoutContainerSubTitle>
-                <ItemsContainer>
-                    <FirstItem />
-                    <SecondItem />
-                    <TotalsOfItems />
-                </ItemsContainer>
-                <CenteredButton onClick={() => setTotals(InitialGlobalState)}>Reset</CenteredButton>
+        <LayoutContainer
+            backgroundColor={colors.lightGrey}
+            verticalPadding="2rem"
+        >
+            <LayoutContainerTitle>🌈 GlobalState</LayoutContainerTitle>
+            <LayoutContainerSubTitle>
+                This demonstrates the power and easiness of the create global
+                state hook
+            </LayoutContainerSubTitle>
+            <ItemsContainer>
+                <FirstItem />
+                <SecondItem />
+                <TotalsOfItems />
+            </ItemsContainer>
+            <CenteredButton onClick={() => setTotals(InitialGlobalState)}>
+                Reset
+            </CenteredButton>
         </LayoutContainer>
     );
 };

@@ -1,8 +1,17 @@
 import axios from 'axios';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useDebounce, usePrevious } from 'react-use';
-import { Button, LayoutContainer, LayoutContainerSubTitle, LayoutContainerTitle } from '../../Layout.styles';
-import { CenteredContainer, InputContainer, FetchedTitle } from './DebouncedFetch.styles';
+import {
+    Button,
+    LayoutContainer,
+    LayoutContainerSubTitle,
+    LayoutContainerTitle,
+} from '../../Layout.styles';
+import {
+    CenteredContainer,
+    InputContainer,
+    FetchedTitle,
+} from './DebouncedFetch.styles';
 
 const DebouncedFetch = () => {
     const [inputValue, setInputValue] = useState('');
@@ -36,7 +45,9 @@ const DebouncedFetch = () => {
     const fetchedBlock = useMemo(
         () => (
             <div>
-                <FetchedTitle>Fetched data after {delayInSeconds} seconds:</FetchedTitle>
+                <FetchedTitle>
+                    Fetched data after {delayInSeconds} seconds:
+                </FetchedTitle>
                 <p>{fetchedParams}</p>
             </div>
         ),
@@ -82,9 +93,7 @@ const DebouncedFetch = () => {
                     />
                 </InputContainer>
                 {isDebouncing && (
-                        <Button onClick={cancelDebounce}>
-                            Cancel debounce
-                        </Button>
+                    <Button onClick={cancelDebounce}>Cancel debounce</Button>
                 )}
 
                 {!!fetchedParams && fetchedBlock}

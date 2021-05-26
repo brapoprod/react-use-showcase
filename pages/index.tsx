@@ -6,6 +6,7 @@ import VikingNameGenerator from '../components/pageBlocks/VikingNameGenerator/Vi
 import { useLocalStorage } from 'react-use';
 import { Viking } from '../interfaces';
 import IntroComponent from '../components/pageBlocks/IntroComponent/IntroComponent';
+import GlobalViking from '../components/pageBlocks/VikingNameGenerator/GlobalViking';
 
 const IndexPage = () => {
     const [localStorageViking, , removeViking] =
@@ -24,12 +25,7 @@ const IndexPage = () => {
         <Layout title="React Use Showcase">
             <IntroComponent />
             {!!globalViking && (
-                <section>
-                    <h2>
-                        Hi, {globalViking.name}, {globalViking.translation}
-                    </h2>
-                    <button onClick={unViking}>Unviking yourself</button>
-                </section>
+                <GlobalViking viking={globalViking} unViking={unViking} />
             )}
             <GlobalStateComponent />
             <DebouncedFetch />

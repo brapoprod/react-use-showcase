@@ -1,6 +1,6 @@
-import { Reboot } from 'styled-reboot'
+import { Reboot } from 'styled-reboot';
 
-import '../utils/reset.css'
+import '../utils/reset.css';
 
 export default function App({ Component, pageProps }) {
     return (
@@ -8,5 +8,5 @@ export default function App({ Component, pageProps }) {
             <Reboot />
             <Component {...pageProps} />
         </>
-    )
+    );
 }

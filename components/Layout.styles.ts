@@ -53,7 +53,7 @@ export const Button = styled.button`
         color: ${colors.secondaryBlue};
         transition: all 0.1s ease-in-out;
     }
-    
+
     &:focus {
         outline: 0;
     }

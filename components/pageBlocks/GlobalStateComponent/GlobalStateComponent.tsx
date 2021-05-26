@@ -1,5 +1,13 @@
 import React from 'react';
 import { createGlobalState } from 'react-use';
+import { colors } from '../../../utils/variables';
+import {
+    LayoutContainer,
+    LayoutContainerSubTitle,
+    LayoutContainerTitle,
+    CenteredButton,
+} from '../../Layout.styles';
+import { ItemContainer, ItemsContainer } from './GlabalStateComponent.styles';
 
 interface InitialGlobalStateType {
     firstValue: number;
@@ -17,11 +25,12 @@ const useGlobalValue =
 const FirstItem = () => {
     const [totals, setTotals] = useGlobalValue();
     return (
-        <div>
-            <label htmlFor="first-item">First item amount</label>
+        <ItemContainer>
+            <label htmlFor="first-item">First item amount:</label>
             <input
                 type="number"
                 name="first-item"
+                value={totals.firstValue}
                 onChange={(event) =>
                     setTotals({
                         ...totals,
@@ -29,18 +38,19 @@ const FirstItem = () => {
                     })
                 }
             />
-        </div>
+        </ItemContainer>
     );
 };
 
 const SecondItem = () => {
     const [totals, setTotals] = useGlobalValue();
     return (
-        <div>
-            <label htmlFor="second-item">Second item amount</label>
+        <ItemContainer>
+            <label htmlFor="second-item">Second item amount:</label>
             <input
                 type="number"
                 name="second-item"
+                value={totals.secondValue}
                 onChange={(event) =>
                     setTotals({
                         ...totals,
@@ -48,39 +58,46 @@ const SecondItem = () => {
                     })
                 }
             />
-        </div>
+        </ItemContainer>
     );
 };
 
 const TotalsOfItems = () => {
     const [totals] = useGlobalValue();
     return (
-        <div>
-            <label htmlFor="totals">Total amount</label>
+        <ItemContainer>
+            <label htmlFor="totals">Total amount:</label>
             <input
                 type="number"
                 name="totals"
                 disabled={true}
                 defaultValue={totals.firstValue + totals.secondValue}
             />
-        </div>
+        </ItemContainer>
     );
 };
 
 const GlobalStateComponent = () => {
+    const [, setTotals] = useGlobalValue();
     return (
-        <section>
-            <h2>GlobalState</h2>
-            <p>
+        <LayoutContainer
+            backgroundColor={colors.lightGrey}
+            verticalPadding="2rem"
+        >
+            <LayoutContainerTitle>🌈 GlobalState</LayoutContainerTitle>
+            <LayoutContainerSubTitle>
                 This demonstrates the power and easiness of the create global
                 state hook
-            </p>
-            <div>
+            </LayoutContainerSubTitle>
+            <ItemsContainer>
                 <FirstItem />
                 <SecondItem />
                 <TotalsOfItems />
-            </div>
-        </section>
+            </ItemsContainer>
+            <CenteredButton onClick={() => setTotals(InitialGlobalState)}>
+                Reset
+            </CenteredButton>
+        </LayoutContainer>
     );
 };
 
